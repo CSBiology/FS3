@@ -1,9 +1,11 @@
 namespace FS3
 
+
 module AccessBasic =
 
     open Amazon.S3
     open Amazon.S3.Model
+    open System.IO
 
     let private initPutObjectFromFileAsync (client: AmazonS3Client) (objectPath: string) (bucket: string) =
 
