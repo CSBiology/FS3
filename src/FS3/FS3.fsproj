@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Library.fs" />
+    <Compile Include="AccessBasic.fs" />
+    <Compile Include="AccessTransferUtility.fs" />
+    <Compile Include="S3Client.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.5.9" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

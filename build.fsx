@@ -74,6 +74,8 @@ module ProjectInfo =
 
     let projectRepo = sprintf "%s/%s/%s" "https://github.com" gitOwner gitName
 
+    let testProject = "tests/FS3.Tests/FS3.Tests.fsproj"
+
     let website = "/FS3"
 
     let pkgDir = "pkg"
