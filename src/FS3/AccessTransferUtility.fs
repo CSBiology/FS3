@@ -3,7 +3,6 @@ namespace FS3
 module AccessTransferUtility =
     
     open Amazon.S3
-    open Amazon.S3.Model
     open Amazon.S3.Transfer
 
     let private initObjectMultipartUploadAsync (client: AmazonS3Client) (objectPath: string) (bucket: string) =
