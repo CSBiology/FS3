@@ -23,7 +23,7 @@
     <Summary>Access S3 storages from F# via AWS SDK </Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/CSBiology/FS3</PackageProjectUrl>
-    <PackageTags>documentation fsharp csharp dotnet</PackageTags>
+    <PackageTags>fsharp dotnet s3 storage amazon aws</PackageTags>
     <RepositoryUrl>https://github.com/CSBiology/FS3</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <FsDocsLicenseLink>https://github.com/CSBiology/FS3/blob/main/LICENSE</FsDocsLicenseLink>
