@@ -83,3 +83,15 @@ module AccessBasic =
             response.ResponseStream
 
         responseStream.CopyTo (new FileStream(targetPath, FileMode.Create))
+
+    let downloadObjectMemoryStream client objectKey bucket =
+        
+        use response =
+            initReadObjectDataAsync client objectKey bucket
+            |> Async.RunSynchronously
+        use responseStream =
+            response.ResponseStream
+        let memStream = new System.IO.MemoryStream()
+        responseStream.CopyTo(memStream)
+        memStream.Seek(0L, System.IO.SeekOrigin.Begin)
+        memStream
