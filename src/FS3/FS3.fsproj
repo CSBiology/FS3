@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="BucketManagement.fs" />
     <Compile Include="AccessBasic.fs" />
     <Compile Include="AccessTransferUtility.fs" />
     <Compile Include="S3Client.fs" />
