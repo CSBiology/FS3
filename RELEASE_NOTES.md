@@ -1,3 +1,6 @@
+### 0.0.5 - 04/11/2021
+* Change directory upload to work recursively for subdirectories
+* Add selective directory upload (only upload files from directory matching search pattern)
 ### 0.0.4 - 16/04/2021
 * Add bucket management
 * Change framework from netstandard2.1 to netstandard2.0
