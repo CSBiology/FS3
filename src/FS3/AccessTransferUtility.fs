@@ -23,12 +23,12 @@ module AccessTransferUtility =
             |> Async.AwaitTask
         multipartUploadRequest
 
-    let private initDirectoryMultipartUploadAsync (client: AmazonS3Client) (directoryPath: string) (bucket: string) =
+    let private initDirectoryMultipartUploadAsync (client: AmazonS3Client) (directoryPath: string) (bucket: string) (searchPattern: string) =
 
         let directoryTransferUtility = new TransferUtility(client)
     
         let multipartUploadRequest =
-            directoryTransferUtility.UploadDirectoryAsync(directoryPath, bucket)
+            directoryTransferUtility.UploadDirectoryAsync(directoryPath, bucket, searchPattern, System.IO.SearchOption.AllDirectories)
             |> Async.AwaitTask
         multipartUploadRequest
 
@@ -36,10 +36,10 @@ module AccessTransferUtility =
 
         let directoryTransferUtility = new TransferUtility(client)
     
-        let multipartUploadRequest =
+        let multipartDownloadRequest =
             directoryTransferUtility.DownloadDirectoryAsync(bucket, sourceDirectoryPath, targetDirectoryPath)
             |> Async.AwaitTask
-        multipartUploadRequest
+        multipartDownloadRequest
 
     /// Uploads an object to the S3 storage using multipart upload.
     /// objectPath: Path of the object you want to upload
@@ -62,13 +62,24 @@ module AccessTransferUtility =
         |> Async.RunSynchronously
         |> ignore
 
-    /// Uploads a directory to the S3 storage using multipart upload.
+    /// Recursively uploads a directory to the S3 storage using multipart upload.
     /// directoryPath: Path of the directory you want to upload
     /// bucket: Destination of the directory on the S3 storage. Subfolders of a bucket have to be specified here as well
     /// e.g. bucketName/folder1/folder2
     let directoryMultipartUpload (client: AmazonS3Client) (directoryPath: string) (bucket: string) =
 
-        initDirectoryMultipartUploadAsync client directoryPath bucket
+        initDirectoryMultipartUploadAsync client directoryPath bucket "*"
+        |> Async.RunSynchronously
+        |> ignore
+    
+    /// Selectively and recursively uploads files from a directory matching the selectPattern to the S3 storage using multipart upload.
+    /// directoryPath: Path of the directory you want to upload
+    /// bucket: Destination of the directory on the S3 storage. Subfolders of a bucket have to be specified here as well
+    /// e.g. bucketName/folder1/folder2
+    /// selectPattern: Search pattern for files (e.g. "*.txt" for txt files)
+    let directoryMultipartUploadSelective (client: AmazonS3Client) (directoryPath: string) (bucket: string) (selectPattern: string) =
+
+        initDirectoryMultipartUploadAsync client directoryPath bucket selectPattern
         |> Async.RunSynchronously
         |> ignore
 
